@@ -1,0 +1,134 @@
+# Функция read_file принимает путь к файлу, открывает его на чтение и возвращает содержимое файла.
+# В случае ошибки (файл не найден), выводится сообщение, и функция возвращает None.
+def read_file(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            return file.read()
+    except FileNotFoundError:
+        print("File not found. Please check the file path.")
+        return None
+
+
+# Задача 1: Чтение и отображение содержимого файла.
+# Функция ex_1 вызывает read_file для чтения содержимого файла и возвращает его.
+def ex_1(file_path):
+    print('Task 1:')
+    content = read_file(file_path)
+    return content
+
+
+# Задача 2: Случайный выбор и отображение строки из файла.
+# Функция ex_2 вызывает read_file, разделяет содержимое на строки, выбирает случайную строку и возвращает ее.
+def ex_2(file_path):
+    import random
+    print('Task 2')
+    content = read_file(file_path)
+    if content is not None:
+        lines = content.split('\n')
+        random_line = random.choice(lines)
+        return random_line
+
+
+# Задача 3: Подсчет и отображение количества заглавных букв в файле.
+# Функция ex_3 вызывает read_file, подсчитывает количество заглавных букв и возвращает результат.
+def ex_3(file_path):
+    print('Task 3')
+    content = read_file(file_path)
+    if content is not None:
+        uppercase_count = sum(1 for char in content if char.isupper())
+        return uppercase_count
+
+
+# Задача 4: Подсчет и отображение количества строк, не начинающихся с 'D'.
+# Функция ex_4 вызывает read_file, разделяет содержимое на строки, подсчитывает строки, не начинающиеся с 'D', и возвращает результат.
+def ex_4(file_path):
+    print('Task 4')
+    content = read_file(file_path)
+    if content is not None:
+        lines = content.split('\n')
+        count = sum(1 for line in lines if not line.startswith('D'))
+        return count
+
+
+# Задача 5: Подсчет и отображение количества слов, заканчивающихся на 'F' или 'f'.
+# Функция ex_5 вызывает read_file, разделяет содержимое на слова, подсчитывает слова, заканчивающиеся на 'F' или 'f', и возвращает результат.
+def ex_5(file_path):
+    print('Task 5')
+    content = read_file(file_path)
+    if content is not None:
+        words = content.split()
+        count = sum(1 for word in words if word.lower().endswith('f'))
+        return count
+
+
+# Задача 6: Подсчет и отображение количества вхождений 'all' и 'none' в файле.
+# Функция ex_6 вызывает read_file, разделяет содержимое на слова, подсчитывает вхождения 'all' и 'none' и возвращает результат.
+def ex_6(file_path):
+    print('Task 6')
+    content = read_file(file_path)
+    if content is not None:
+        words = content.split()
+        count_all = words.count("all")
+        count_none = words.count("none")
+        return count_all, count_none
+
+
+# Задача 7: Отображение частоты слов в файле.
+# Функция ex_7 вызывает read_file, разделяет содержимое на слова, использует Counter для подсчета частоты слов и возвращает результат.
+def ex_7(file_path):
+    print('Task 7')
+    content = read_file(file_path)
+    if content is not None:
+        from collections import Counter
+        words = content.split()
+        word_freq = Counter(words)
+        return word_freq
+
+
+# Задача 8: Отображение самого длинного слова в файле.
+# Функция ex_8 вызывает read_file, разделяет содержимое на слова, находит самое длинное слово и возвращает его.
+def ex_8(file_path):
+    print('Task 8')
+    content = read_file(file_path)
+    if content is not None:
+        words = content.split()
+        longest_word = max(words, key=len)
+        return longest_word
+
+
+# Задача 9: Замена 'B' и 'b' на 'J' и 'j' в содержимом файла и отображение исправленного содержимого.
+# Функция ex_9 вызывает read_file, заменяет 'B' и 'b' на 'J' и 'j' и возвращает исправленное содержимое.
+def ex_9(file_path):
+    print('Task 9')
+    content = read_file(file_path)
+    if content is not None:
+        corrected_content = content.replace('B', 'J').replace('b', 'j')
+        return corrected_content
+
+
+# Задача 10: Подсчет и отображение количества вхождений 'a' и 'b' (без учета регистра) в содержимом файла.
+# Функция ex_10 вызывает read_file, преобразует содержимое в нижний регистр, подсчитывает вхождения 'a' и 'b' и возвращает результат.
+def ex_10(file_path):
+    print('Task 10')
+    content = read_file(file_path)
+    if content is not None:
+        content_lower = content.lower()
+        count_a = content_lower.count('a')
+        count_b = content_lower.count('b')
+        return count_a, count_b
+
+
+# Запрос пути к файлу у пользователя
+file_path = input("Введите путь к файлу: ")
+
+# Отображение результатов
+print(ex_1(file_path))
+print(ex_2(file_path))
+print(ex_3(file_path))
+print(ex_4(file_path))
+print(ex_5(file_path))
+print(ex_6(file_path))
+print(ex_7(file_path))
+print(ex_8(file_path))
+print(ex_9(file_path))
+print(ex_10(file_path))
